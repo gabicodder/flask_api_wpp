@@ -63,9 +63,17 @@ def ProcessMessage(text,number):
     elif "contact" in text:
         data = util.TextFormatMessage("*Contact center:\n00788956*",number)
         listData.append(data)
-        
+    
+    elif "buy" in text:
+        data = util.ButtonMessage(number)
+        listData.append(data)
+    elif "sell" in text:
+        data = util.ButtonMessage(number)
+        listData.append(data)
+    
     else:
         data = util.TextMessage("I'm sorry, I can't undestand you",number)
+        listData.append(data)
     
     for item in listData:
         whatsappservice.SendMessageWhasapp(item)

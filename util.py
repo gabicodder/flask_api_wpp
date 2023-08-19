@@ -107,6 +107,39 @@ def LocationMessage(number):
         }
     return data
 
+def ButtonMessage(number):
+    data = {
+            "messaging_product":"whatsapp",
+            "to": number,
+            "type": "interactive",
+            "interactive":{
+                "type":"button",
+                "body":{
+                    "text":"Do you already have an account? 😏"
+                },
+                "action":{
+                    "buttons":[
+                        {
+                            "type":"reply",
+                            "reply":{
+                                "id":"001",
+                                "title":"Sign up"
+                            }
+                        },
+                        {
+                            "type":"reply",
+                            "reply":{
+                                "id":"002",
+                                "title":"Log in"
+                            }
+                        }
+                    ]
+                }
+            },
+            
+        }
+    return data
+
 def ListMessage(number):
     data = {
     "messaging_product": "whatsapp",
