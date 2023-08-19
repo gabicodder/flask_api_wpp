@@ -54,6 +54,16 @@ def ProcessMessage(text,number):
         
     elif "thank" in text:
         data = util.TextMessage("Thank you for contacting me",number)
+        
+    elif "agency" in text:
+        data = util.TextFormatMessage("This is out agency",number)
+        dataLocation = util.LocationMessage(number)
+        listData.append(data)
+        listData.append(dataLocation)
+    elif "contact" in text:
+        data = util.TextFormatMessage("*Contact center:\n00788956*",number)
+        listData.append(data)
+        
     else:
         data = util.TextMessage("I'm sorry, I can't undestand you",number)
     
