@@ -43,15 +43,22 @@ def ReceivedMessage():
 
 def ProcessMessage(text,number):
     text  = text.lower()
+    listData = []
     
-    if "hi" in text:
+    if "hi" in text or "option" in text:
         data = util.TextMessage("Hello, how can I help you?",number)
+        dataMenu = util.ListMessage(number)
+        
+        listData.append(data)
+        listData.append(dataMenu)
+        
     elif "thank" in text:
         data = util.TextMessage("Thank you for contacting me",number)
     else:
         data = util.TextMessage("I'm sorry, I can't undestand you",number)
     
-    whatsappservice.SendMessageWhasapp(data)
+    for item in listData:
+        whatsappservice.SendMessageWhasapp(item)
 
 def GenerateMessage(text, number):
     
