@@ -32,14 +32,26 @@ def ReceivedMessage():
         message = (value["messages"])[0]
         number = message["from"]
         
+        ProcessMessage(text,number)
         text = util.GetTextUser(message)
-        GenerateMessage(text,number)
         print(text)
         
         return "EVENT_RECEIVED"
         
     except Exception as e:
         return "EVENT_RECEIVED"
+
+def ProcessMessage(text,number):
+    text  = text.lower()
+    
+    if "hi" in text:
+        data = util.TextMessage("Hello, how can I help you?",number)
+    elif "thank" in text:
+        data = util.TextMessage("Thank you for contacting me",number)
+    else:
+        data = util.TextMessage("I'm sorry, I can't undestand you",number)
+    
+    whatsappservice.SendMessageWhasapp(data)
 
 def GenerateMessage(text, number):
     
