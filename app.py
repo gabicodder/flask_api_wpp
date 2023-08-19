@@ -70,6 +70,13 @@ def ProcessMessage(text,number):
     elif "sell" in text:
         data = util.ButtonMessage(number)
         listData.append(data)
+        
+    elif "sign up" in text:
+        data = util.TextFormatMessage("Enter this link to register: ",number)
+        listData.append(data)
+    elif "log in" in text:
+        data = util.TextFormatMessage("Enter this link to log in: ",number)
+        listData.append(data)
     
     else:
         data = util.TextMessage("I'm sorry, I can't undestand you",number)
