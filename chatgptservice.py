@@ -6,8 +6,8 @@ def GetResponse(text):
         result = openai.Completion.create(model = "text-davinci-003",
                                           prompt=text,
                                           n=1,
-                                          max_token=500)
-        response = result.choice[0].text
+                                          max_tokens=500)
+        response = result.choices[0].text
         return response
     
     except Exception as ex:
