@@ -1,6 +1,7 @@
 from flask import Flask, request
 import util
 import whatsappservice
+import chatgptservice
 
 app = Flask(__name__)
 @app.route('/welcome',methods=['GET'])
@@ -32,9 +33,18 @@ def ReceivedMessage():
         message = (value["messages"])[0]
         number = message["from"]
         
-        ProcessMessage(text,number)
         text = util.GetTextUser(message)
-        print(text)
+        responseGPT = chatgptservice.GetResponse(text)
+        
+        if responseGPT != "error":
+            data = util.TextFormatMessage(responseGPT,number)
+        else:
+            data = util.TextMessage("Sorry, a problem occured ",number)
+        
+        whatsappservice.SendMessageWhasapp(data)
+        
+        # ProcessMessage(text,number)
+        # print(text)
         
         return "EVENT_RECEIVED"
         
